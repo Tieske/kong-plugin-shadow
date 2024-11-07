@@ -1,0 +1,20 @@
+_format_version: '3.0'
+
+services:
+- protocol: http
+  name: test-shadow
+  id: 8f97f52b-71fe-40f4-944a-eb7f86ed8112
+  path: /anything
+  port: 80
+  host: httpbin.org
+  routes:
+  - paths:
+    - /
+    id: 080ad071-7305-440b-86f4-16460b213d9e
+    plugins:
+    - name: shadow
+      config:
+        weight: 100
+        shadow_request_body: false
+        shadow_endpoints:
+        - http://httpbin.org
